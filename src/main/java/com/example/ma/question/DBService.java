@@ -32,15 +32,15 @@ public class DBService {
             for(int i=0;i<count;i++){
                 cursor.moveToPosition(i);
                 Question question =new Question();
-                question.ID=cursor.getInt(cursor.getColumnIndex("Field1"));
-                question.question=cursor.getString(cursor.getColumnIndex("Field2"));
-                question.answerA=cursor.getString(cursor.getColumnIndex("Field3"));
-                question.answerB=cursor.getString(cursor.getColumnIndex("Field4"));
-                question.answerC=cursor.getString(cursor.getColumnIndex("Field5"));
-                question.answerD=cursor.getString(cursor.getColumnIndex("Field6"));
-                question.answer=cursor.getInt(cursor.getColumnIndex("Field7"));
+                question.ID=cursor.getInt(cursor.getColumnIndex("ID"));
+                question.question=cursor.getString(cursor.getColumnIndex("question"));
+                question.answerA=cursor.getString(cursor.getColumnIndex("answerA"));
+                question.answerB=cursor.getString(cursor.getColumnIndex("answerB"));
+                question.answerC=cursor.getString(cursor.getColumnIndex("answerC"));
+                question.answerD=cursor.getString(cursor.getColumnIndex("answerD"));
+                question.answer=cursor.getInt(cursor.getColumnIndex("answer"));
 
-                question.explaination = cursor.getString(cursor.getColumnIndex("Field8"));
+                question.explanation = cursor.getString(cursor.getColumnIndex("explanation"));
                 //表示没有选择任何选项
                 question.selectedAnswer=-1;
                 list.add(question);

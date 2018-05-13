@@ -20,7 +20,7 @@ public class ExamActivity extends Activity {
     private int count;
     private int current;
     private boolean wrongMode;//标志变量，判断是否进入错题模式
-   private  TextView answer_result;
+   private  TextView answer_explanation;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam);
@@ -32,26 +32,26 @@ public class ExamActivity extends Activity {
         current = 0;
         wrongMode=false;//默认情况
 
-        final TextView tv_question = (TextView) findViewById(R.id.question);
+        final TextView set_question = (TextView) findViewById(R.id.set_question);
         final RadioButton[] radioButtons = new RadioButton[4];
-        radioButtons[0] = (RadioButton)findViewById(R.id.answerA);
-        radioButtons[1] = (RadioButton)findViewById(R.id.answerB);
-        radioButtons[2] = (RadioButton)findViewById(R.id.answerC);
-        radioButtons[3] =(RadioButton) findViewById(R.id.answerD);
-        answer_result = (TextView) findViewById(R.id.answer_result);
+        radioButtons[0] = (RadioButton)findViewById(R.id.Button_answerA);
+        radioButtons[1] = (RadioButton)findViewById(R.id.Button_answerB);
+        radioButtons[2] = (RadioButton)findViewById(R.id.Button_answerC);
+        radioButtons[3] =(RadioButton) findViewById(R.id.Button_answerD);
+        answer_explanation = (TextView) findViewById(R.id.answer_explanation);
         Button btn_previous = (Button)findViewById(R.id.btn_previous);
         Button btn_next =(Button) findViewById(R.id.btn_next);
-        final TextView answer_result = (TextView)findViewById(R.id.answer_result);
+
         final RadioGroup radioGroup =(RadioGroup) findViewById(R.id.mRadioGroup);
         //为控件赋值
         Question q = list.get(0);
-        tv_question.setText(q.question);
+        set_question.setText(q.question);
 
         radioButtons[0].setText(q.answerA);
         radioButtons[1].setText(q.answerB);
         radioButtons[2].setText(q.answerC);
         radioButtons[3].setText(q.answerD);
-
+        answer_explanation.setText(q.explanation);
         btn_next.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -60,12 +60,12 @@ public class ExamActivity extends Activity {
                     current++;
                     //更新题目
                     Question q = list.get(current);
-                    tv_question.setText(q.question);
+                    set_question.setText(q.question);
                     radioButtons[0].setText(q.answerA);
                     radioButtons[1].setText(q.answerB);
                     radioButtons[2].setText(q.answerC);
                     radioButtons[3].setText(q.answerD);
-                    answer_result.setText(q.answer);
+                    answer_explanation.setText(q.explanation);
 
 
                     //若之前已经选择过，则应记录选择
@@ -132,16 +132,16 @@ public class ExamActivity extends Activity {
                                         count=list.size();
                                         //更新显示时的内容
                                         Question q = list.get(current);
-                                        tv_question.setText(q.question);
+                                        set_question.setText(q.question);
                                         radioButtons[0].setText(q.answerA);
                                         radioButtons[1].setText(q.answerB);
                                         radioButtons[2].setText(q.answerC);
                                         radioButtons[3].setText(q.answerD);
-                                        answer_result .setText(q.explaination);
+                                        answer_explanation.setText(q.explanation);
                                         //显示结果
-                                        answer_result.setVisibility(View.VISIBLE);
+                                        answer_explanation.setVisibility(View.VISIBLE);
                                         //显示解析
-                                        //tv_explaination.setVisibility(View.VISIBLE);
+                                        answer_explanation.setText(q.explanation);
                                     }
                                 })
                                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -161,12 +161,12 @@ public class ExamActivity extends Activity {
                 {
                     current--;
                     Question q = list.get(current);
-                    tv_question.setText(q.question);
+                    set_question.setText(q.question);
                     radioButtons[0].setText(q.answerA);
                     radioButtons[1].setText(q.answerB);
                     radioButtons[2].setText(q.answerC);
                     radioButtons[3].setText(q.answerD);
-                   // tv_explaination.setText(q.explaination);
+                    answer_explanation.setText(q.explanation);
 
 
                     //若之前已经选择过，则应记录选择
